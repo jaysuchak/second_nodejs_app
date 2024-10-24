@@ -1,6 +1,6 @@
 ---
 applications:
-- name: second_nodejs_app
+- name: simple-node-app
   buildpack: nodejs_buildpack
   memory: 60M
   disk_quota: 200M

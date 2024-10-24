@@ -1,18 +1,17 @@
-const express = require("express");
+import express from "express";
+import bodyParser from "body-parser";
+import { chat } from "./src/chat.js";
+
 const app = express();
+const PORT = process.env.PORT || 8080;
 
-const PORT = process.env.PORT || 8090;
+app.use(bodyParser.json());
 
-app.get('/',(req,res)=>{
-    res.send('Hello from Second App');
+app.post('/chat/completions', async (req, res) => {
+    console.log(req.body);
+    res.send(await chat(req.body));
 });
 
-app.get('/hello',(req,res)=>{
-    res.send({
-        msg: 'Message from /hello',
-        status: 'Good'
-    });
-});
-app.listen(PORT,()=>{
+app.listen(PORT, () => {
     console.log('Express server is up');
 });
